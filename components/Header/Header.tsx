@@ -13,13 +13,14 @@ import {
     Search,
     Location,
     Check,
+    Filter,
 } from '../Icons'
 
 export default function Header() {
     const [enabled, setEnabled] = useState(false)
 
     return (
-        <div className="relative flex h-[202px] w-full flex-col items-center md:max-w-[768px] lg:max-w-[1440px]">
+        <div className="relative flex h-[202px] w-full max-w-[375px] flex-col items-center md:max-w-[768px] lg:max-w-[1440px]">
             <div className="-z-10">
                 <div className="absolute top-0 left-0 hidden lg:block">
                     <BGHeaderDesktop />
@@ -27,11 +28,11 @@ export default function Header() {
                 <div className="absolute left-0 top-0 hidden md:block lg:hidden">
                     <BGHeaderTablet />
                 </div>
-                <div className="md:hidden">
+                <div className="absolute top-0 left-0 md:hidden">
                     <BGHeaderMobile />
                 </div>
             </div>
-            <div className="flex w-full flex-col items-center md:max-w-[689px] lg:max-w-[1110px]">
+            <div className="flex w-full max-w-[327px] flex-col items-center md:max-w-[689px] lg:max-w-[1110px]">
                 <div className="mt-[45px] flex w-full justify-between">
                     <Logo />
                     <div className="flex items-center gap-4">
@@ -58,12 +59,14 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            <div className="absolute bottom-0 flex h-[80px] w-full items-center rounded-md bg-white md:max-w-[689px] md:pl-6 lg:max-w-[1110px] lg:pl-8">
+            <div className="absolute bottom-0 flex h-[80px] w-full max-w-[327px] items-center rounded-md bg-white md:max-w-[689px] md:pl-6 lg:max-w-[1110px] lg:pl-8">
                 <form className="flex h-full w-full justify-between">
                     <div className="flex items-center">
                         {/* search by title, companies, expertise */}
-                        <div className="flex h-full items-center border-r border-[#6E8098] border-opacity-20 md:w-[198px] lg:w-[454px]">
-                            <Search />
+                        <div className="flex h-full items-center border-[#6E8098] border-opacity-20 text-[#5964E0] md:w-[198px] md:border-r lg:w-[454px]">
+                            <div className="hidden md:block">
+                                <Search />
+                            </div>
                             {/* desktop */}
                             <input
                                 type="text"
@@ -76,12 +79,19 @@ export default function Header() {
                                 type="text"
                                 placeholder="Filter by title..."
                                 className="hidden border-none focus:ring-0 md:block lg:hidden"
-                                size={11}
+                                size={14}
+                            />
+                            {/* mobile */}
+                            <input
+                                type="text"
+                                placeholder="Filter by title..."
+                                className="ml-4 border-none focus:ring-0 md:hidden "
+                                size={18}
                             />
                         </div>
 
                         {/* search by location */}
-                        <div className="flex h-full items-center border-r border-[#6E8098] border-opacity-20 md:ml-6 md:w-[189px] lg:ml-0 lg:w-[277px] lg:pl-[23px]">
+                        <div className="hidden h-full items-center border-r border-[#6E8098] border-opacity-20 md:ml-6 md:flex md:w-[189px] lg:ml-0 lg:w-[277px] lg:pl-[23px]">
                             <Location />
                             <input
                                 type="text"
@@ -92,7 +102,7 @@ export default function Header() {
                         </div>
 
                         {/* filter for full time jobs only */}
-                        <div className="flex items-center">
+                        <div className="hidden items-center md:flex">
                             <input type="checkbox" id="checkbox" />
                             <label htmlFor="checkbox">
                                 <div className="checkbox md:ml-5 lg:ml-8">
@@ -106,8 +116,16 @@ export default function Header() {
                                 </span>
                             </label>
                         </div>
-                        <button className="my-4 ml-[26px] rounded-[5px] bg-[#5964E0] font-bold text-white hover:bg-[#939BF4] md:px-[14px] md:py-4 lg:px-9 lg:pt-4 lg:pb-3">
+                        <button className="my-4 ml-[26px] hidden rounded-[5px] bg-[#5964E0] font-bold text-white hover:bg-[#939BF4] md:block md:px-[14px] md:py-4 lg:px-9 lg:pt-4 lg:pb-3">
                             Search
+                        </button>
+                    </div>
+                    <div className="pr-4 flex items-center gap-6 md:hidden">
+                        <button>
+                            <Filter />
+                        </button>
+                        <button className="flex h-12 w-12 items-center justify-center rounded-[5px] bg-[#5964E0] text-white">
+                            <Search />
                         </button>
                     </div>
                 </form>
