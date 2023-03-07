@@ -1,13 +1,9 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { Switch } from '@headlessui/react'
-import { useTheme } from 'next-themes'
+import { useState, useRef } from 'react'
 
+// components
 import MobileMenu from './MobileMenu'
-
-// Load Default Data
-import DATA from '../../json/data.json'
-const defaultData = DATA
+import ThemeSwitcher from './ThemeSwitcher'
 
 // icons
 import {
@@ -15,34 +11,41 @@ import {
     BGHeaderTablet,
     BGHeaderMobile,
     Logo,
-    Sun,
-    Moon,
     Search,
     Location,
     Check,
     Filter,
-} from '../Icons'
+} from '../../Icons'
 
-export default function Header() {
-    const { theme, setTheme } = useTheme()
-    const [enabled, setEnabled] = useState<boolean>(
-        theme === 'dark' ? true : false
-    )
+export default function Header({
+    data,
+    setFilteredData,
+}: {
+    data: any
+    setFilteredData: any
+}) {
     const [mobileMenu, setMobileMenu] = useState<boolean>(false)
-    const [mounted, setMounted] = useState<boolean>(false)
-
-    useEffect(() => {
-        setMounted(true)
-    }, [])
+    const nonLocationFilter = useRef<any>()
 
     const handleMobileMenu = (e: any) => {
         e.preventDefault()
         setMobileMenu(mobileMenu === false ? true : false)
     }
 
-    const handleTheme = () => {
-        setEnabled(enabled === false ? true : false)
-        setTheme(theme === 'light' ? 'dark' : 'light')
+    const handleFilter = (e: any) => {
+        e.preventDefault()
+        if (!nonLocationFilter.current.value) {
+            setFilteredData(data)
+            return
+        }
+
+        const filter = [...data]
+        const filteredData = filter.filter((data) =>
+            data.position.includes(
+                nonLocationFilter.current.value
+            )
+        )
+        setFilteredData(filteredData)
     }
 
     return (
@@ -62,43 +65,14 @@ export default function Header() {
             <div className="flex w-full max-w-[327px] flex-col items-center md:max-w-[689px] lg:max-w-[1110px]">
                 <div className="mt-[45px] flex w-full justify-between">
                     <Logo />
-                    <div className="flex items-center gap-4">
-                        <Sun />
-                        <div>
-                            {!mounted ? (
-                                <Switch className="relative inline-flex h-[24px] w-[48px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent bg-white focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75">
-                                    <span className="sr-only">Use setting</span>
-                                    <span
-                                        aria-hidden="true"
-                                        className={`${'translate-x-[4px]'}
-                                    pointer-events-none inline-block h-[14px] w-[14px]  rounded-full shadow-lg ring-0 transition duration-200 ease-in-out`}
-                                    />
-                                </Switch>
-                            ) : (
-                                <Switch
-                                    checked={enabled}
-                                    onChange={handleTheme}
-                                    className="relative inline-flex h-[24px] w-[48px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent bg-white focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75"
-                                >
-                                    <span className="sr-only">Use setting</span>
-                                    <span
-                                        aria-hidden="true"
-                                        className={`${
-                                            enabled
-                                                ? 'translate-x-[26px]'
-                                                : 'translate-x-[4px]'
-                                        }
-                                    pointer-events-none inline-block h-[14px] w-[14px] transform rounded-full bg-[#5964E0] shadow-lg ring-0 transition duration-200 ease-in-out`}
-                                    />
-                                </Switch>
-                            )}
-                        </div>
-                        <Moon />
-                    </div>
+                    <ThemeSwitcher />
                 </div>
             </div>
             <div className="absolute bottom-0 flex h-[80px] w-full max-w-[327px] items-center rounded-md bg-white dark:bg-blue-100 md:max-w-[689px] md:pl-6 lg:max-w-[1110px] lg:pl-8">
-                <form className="relative flex h-full w-full justify-between">
+                <form
+                    className="relative flex h-full w-full justify-between"
+                    onSubmit={(e) => handleFilter(e)}
+                >
                     <div className="flex items-center">
                         {/* search by title, companies, expertise */}
                         <div className="flex h-full items-center border-[#6E8098] border-opacity-20 text-[#5964E0] dark:bg-blue-100 md:w-[198px] md:border-r lg:w-[454px] ">
@@ -110,6 +84,8 @@ export default function Header() {
                                 type="text"
                                 placeholder="Filter by title, companies, expertise..."
                                 className="hidden border-none focus:ring-0 dark:bg-blue-100 lg:block"
+                                name="test"
+                                ref={nonLocationFilter}
                                 size={29}
                             />
                             {/* tablet */}
@@ -143,7 +119,7 @@ export default function Header() {
                         <div className="hidden items-center md:flex">
                             <input type="checkbox" id="checkbox" />
                             <label htmlFor="checkbox">
-                                <div className="checkbox md:ml-5 lg:ml-8 dark:bg-white">
+                                <div className="checkbox dark:bg-white md:ml-5 lg:ml-8">
                                     <Check />
                                 </div>
                                 <span className="hidden dark:text-white lg:block">

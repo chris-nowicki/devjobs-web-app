@@ -1,4 +1,4 @@
-import { Location, Check } from '../Icons'
+import { Location, Check } from '../../Icons'
 
 export default function MobileMenu({ mobileMenu }: { mobileMenu: boolean }) {
     return (
@@ -19,15 +19,14 @@ export default function MobileMenu({ mobileMenu }: { mobileMenu: boolean }) {
                             <div className="flex items-center py-6 pl-6">
                                 {/* filter for full time jobs only */}
                                 <div className="items-center md:flex">
-                                    <input
-                                        type="checkbox"
-                                        id="checkbox"
-                                    />
+                                    <input type="checkbox" id="checkbox" />
                                     <label htmlFor="checkbox">
-                                        <div className="checkbox md:ml-5 lg:ml-8 dark:bg-[#FFFFFF]">
+                                        <div className="checkbox dark:bg-[#FFFFFF] md:ml-5 lg:ml-8">
                                             <Check />
                                         </div>
-                                        <span className='dark:text-white'>Full Time Only</span>
+                                        <span className="dark:text-white">
+                                            Full Time Only
+                                        </span>
                                     </label>
                                 </div>
                             </div>

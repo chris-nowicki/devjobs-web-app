@@ -20,10 +20,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={kumbh.variable}>
-            <body className='dark:bg-blue-200'>
+            <body className='dark:bg-blue-200 overflow-y-scroll'>
                 <div className="flex flex-col items-center">
                     <Providers>
-                        <main className="">
+                        <main>
                             {children}
                         </main>
                     </Providers>
