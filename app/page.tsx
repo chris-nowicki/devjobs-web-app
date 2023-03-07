@@ -2,8 +2,6 @@
 import DATA from '../json/data.json'
 const defaultData = DATA
 
-import { Scoot } from '@/components/Icons'
-
 export default function Home() {
     return (
         <div className="mt-20 flex w-full max-w-[1110px] flex-wrap gap-[30px]">
@@ -12,8 +10,11 @@ export default function Home() {
                     key={index}
                     className="relative flex h-[253px] w-[350px] flex-col"
                 >
-                    <div className="z-10 ml-8 flex h-[50px] w-[50px] items-center justify-center rounded-[15px] bg-[#E99210]">
-                        <Scoot />
+                    <div
+                        style={{ backgroundColor: job.logoBackground }}
+                        className={`z-10 ml-8 flex h-[50px] w-[50px] items-center justify-center rounded-[15px]`}
+                    >
+                        <img src={job.logo} />
                     </div>
                     <div className="absolute bottom-0 left-0 flex h-[228px] w-[350px] flex-col rounded-md bg-white px-8 pt-[49px] text-gray-300">
                         <div className="flex items-center">
