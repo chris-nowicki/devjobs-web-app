@@ -17,10 +17,48 @@ import {
 } from '../Icons'
 
 export default function Header() {
-    const [enabled, setEnabled] = useState(false)
+    const [enabled, setEnabled] = useState<boolean>(false)
+    const [mobileMenu, setMobileMenu] = useState<boolean>(false)
+
+    const handleMobileMenu = (e: any) => {
+        e.preventDefault()
+        setMobileMenu(mobileMenu === false ? true : false)
+    }
 
     return (
         <div className="relative flex h-[202px] w-full max-w-[375px] flex-col items-center md:max-w-[768px] lg:max-w-[1440px]">
+            {mobileMenu && (
+                <div className="absolute top-0 z-20 flex h-screen w-full items-center justify-center bg-[#000000]/40">
+                    <div className="h-[217px] w-[327px] rounded-md bg-white">
+                        <form className="flex w-full flex-col">
+                            <div className="flex h-[72px] w-full items-center border-b border-[#6E8098] border-opacity-20 py-6 pl-6">
+                                <Location />
+                                <input
+                                    type="text"
+                                    placeholder="Filter by location..."
+                                    className="border-none focus:ring-0"
+                                    size={16}
+                                />
+                            </div>
+                            <div className="flex items-center py-6 pl-6">
+                                {/* filter for full time jobs only */}
+                                <div className="items-center md:flex">
+                                    <input type="checkbox" id="checkbox" />
+                                    <label htmlFor="checkbox">
+                                        <div className="checkbox md:ml-5 lg:ml-8">
+                                            <Check />
+                                        </div>
+                                        <span>Full Time Only</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button className="mx-6 rounded-[5px] bg-[#5964E0] pb-3 pt-4 font-bold text-white hover:bg-[#939BF4] md:block md:px-[14px] lg:px-9 lg:pt-4 lg:pb-3">
+                                Search
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
             <div className="-z-10">
                 <div className="absolute top-0 left-0 hidden lg:block">
                     <BGHeaderDesktop />
@@ -60,7 +98,7 @@ export default function Header() {
                 </div>
             </div>
             <div className="absolute bottom-0 flex h-[80px] w-full max-w-[327px] items-center rounded-md bg-white md:max-w-[689px] md:pl-6 lg:max-w-[1110px] lg:pl-8">
-                <form className="flex h-full w-full justify-between">
+                <form className="relative flex h-full w-full justify-between">
                     <div className="flex items-center">
                         {/* search by title, companies, expertise */}
                         <div className="flex h-full items-center border-[#6E8098] border-opacity-20 text-[#5964E0] md:w-[198px] md:border-r lg:w-[454px]">
@@ -120,8 +158,8 @@ export default function Header() {
                             Search
                         </button>
                     </div>
-                    <div className="pr-4 flex items-center gap-6 md:hidden">
-                        <button>
+                    <div className="flex items-center gap-6 pr-4 md:hidden">
+                        <button onClick={(e) => handleMobileMenu(e)}>
                             <Filter />
                         </button>
                         <button className="flex h-12 w-12 items-center justify-center rounded-[5px] bg-[#5964E0] text-white">
