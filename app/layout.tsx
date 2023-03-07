@@ -1,5 +1,5 @@
 import './globals.css'
-import Header from '@/components/Header/Header'
+import Providers from './Providers'
 
 import { Kumbh_Sans } from 'next/font/google'
 
@@ -20,12 +20,13 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={kumbh.variable}>
-            <body>
+            <body className='dark:bg-blue-200'>
                 <div className="flex flex-col items-center">
-                    <Header />
-                    <main className="w-full max-w-[327px] md:max-w-[689px] lg:max-w-[1110px]">
-                        {children}
-                    </main>
+                    <Providers>
+                        <main className="">
+                            {children}
+                        </main>
+                    </Providers>
                 </div>
             </body>
         </html>
