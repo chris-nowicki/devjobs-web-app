@@ -2,6 +2,10 @@
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
 
+// Load Default Data
+import DATA from '../../json/data.json'
+const defaultData = DATA
+
 // icons
 import {
     BGHeaderDesktop,
