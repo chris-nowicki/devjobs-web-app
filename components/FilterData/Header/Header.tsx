@@ -46,10 +46,18 @@ export default function Header({
         const result = filter
             .filter(
                 (job) =>
-                    job.position.toLowerCase().includes(params.filter.toLocaleLowerCase()) ||
-                    job.company.includes(params.filter)
+                    job.position
+                        .toLowerCase()
+                        .includes(params.filter.toLowerCase()) ||
+                    job.company
+                        .toLowerCase()
+                        .includes(params.filter.toLowerCase())
             )
-            .filter((job) => job.location.toLowerCase().includes(params.location.toLowerCase()))
+            .filter((job) =>
+                job.location
+                    .toLowerCase()
+                    .includes(params.location.toLowerCase())
+            )
             .filter((job) => job.contract.includes(params.fullTime))
         setFilteredData(result)
     }
