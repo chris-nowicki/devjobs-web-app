@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 
 // components
 import MobileMenu from './MobileMenu'
@@ -25,7 +25,15 @@ export default function Header({
     setFilteredData: any
 }) {
     const [mobileMenu, setMobileMenu] = useState<boolean>(false)
-    const nonLocationFilter = useRef<any>()
+    const [params, setParams] = useState<{
+        filter: string
+        location: string
+        fullTime: string
+    }>({
+        filter: '',
+        location: '',
+        fullTime: 'Time',
+    })
 
     const handleMobileMenu = (e: any) => {
         e.preventDefault()
@@ -34,18 +42,16 @@ export default function Header({
 
     const handleFilter = (e: any) => {
         e.preventDefault()
-        if (!nonLocationFilter.current.value) {
-            setFilteredData(data)
-            return
-        }
-
         const filter = [...data]
-        const filteredData = filter.filter((data) =>
-            data.position.includes(
-                nonLocationFilter.current.value
+        const result = filter
+            .filter(
+                (job) =>
+                    job.position.toLowerCase().includes(params.filter.toLocaleLowerCase()) ||
+                    job.company.includes(params.filter)
             )
-        )
-        setFilteredData(filteredData)
+            .filter((job) => job.location.toLowerCase().includes(params.location.toLowerCase()))
+            .filter((job) => job.contract.includes(params.fullTime))
+        setFilteredData(result)
     }
 
     return (
@@ -71,7 +77,7 @@ export default function Header({
             <div className="absolute bottom-0 flex h-[80px] w-full max-w-[327px] items-center rounded-md bg-white dark:bg-blue-100 md:max-w-[689px] md:pl-6 lg:max-w-[1110px] lg:pl-8">
                 <form
                     className="relative flex h-full w-full justify-between"
-                    onSubmit={(e) => handleFilter(e)}
+                    onSubmit={handleFilter}
                 >
                     <div className="flex items-center">
                         {/* search by title, companies, expertise */}
@@ -84,8 +90,13 @@ export default function Header({
                                 type="text"
                                 placeholder="Filter by title, companies, expertise..."
                                 className="hidden border-none focus:ring-0 dark:bg-blue-100 lg:block"
-                                name="test"
-                                ref={nonLocationFilter}
+                                name="filter"
+                                onChange={(e) =>
+                                    setParams({
+                                        ...params,
+                                        filter: e.target.value,
+                                    })
+                                }
                                 size={29}
                             />
                             {/* tablet */}
@@ -94,6 +105,12 @@ export default function Header({
                                 placeholder="Filter by title..."
                                 className="hidden border-none focus:ring-0 dark:bg-blue-100 md:block lg:hidden"
                                 size={14}
+                                onChange={(e) =>
+                                    setParams({
+                                        ...params,
+                                        filter: e.target.value,
+                                    })
+                                }
                             />
                             {/* mobile */}
                             <input
@@ -101,6 +118,12 @@ export default function Header({
                                 placeholder="Filter by title..."
                                 className="ml-4 border-none focus:ring-0 dark:bg-blue-100 md:hidden"
                                 size={18}
+                                onChange={(e) =>
+                                    setParams({
+                                        ...params,
+                                        filter: e.target.value,
+                                    })
+                                }
                             />
                         </div>
 
@@ -111,13 +134,30 @@ export default function Header({
                                 type="text"
                                 placeholder="Filter by location..."
                                 className="border-none focus:ring-0 dark:bg-blue-100"
+                                name="location"
+                                onChange={(e) =>
+                                    setParams({
+                                        ...params,
+                                        location: e.target.value,
+                                    })
+                                }
                                 size={14}
                             />
                         </div>
 
                         {/* filter for full time jobs only */}
                         <div className="hidden items-center md:flex">
-                            <input type="checkbox" id="checkbox" />
+                            <input
+                                type="checkbox"
+                                name="fullTime"
+                                id="checkbox"
+                                onChange={(e) => {
+                                    const filter = e.target.checked
+                                        ? 'Full Time'
+                                        : 'Time'
+                                    setParams({ ...params, fullTime: filter })
+                                }}
+                            />
                             <label htmlFor="checkbox">
                                 <div className="checkbox dark:bg-white md:ml-5 lg:ml-8">
                                     <Check />
