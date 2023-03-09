@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Header from './Header/Header'
+import Link from 'next/link'
 
 export default function FilterData({ data }: { data: any }) {
     const [filteredData, setFilteredData] = useState(data)
@@ -30,9 +31,11 @@ export default function FilterData({ data }: { data: any }) {
                                         <span className="mx-3 h-1 w-1 rounded-full bg-gray-300" />
                                         {job.contract}
                                     </div>
-                                    <h3 className="mt-3 text-blue-100 dark:text-white">
-                                        {job.position}
-                                    </h3>
+                                    <Link href={`/job/${job.id}`}>
+                                        <h3 className="mt-3 text-blue-100 dark:text-white">
+                                            {job.position}
+                                        </h3>
+                                    </Link>
                                     <span className="mt-3">{job.company}</span>
                                 </div>
                                 <h4 className=" text-[#5964E0]">

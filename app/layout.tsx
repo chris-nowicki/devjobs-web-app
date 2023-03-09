@@ -19,13 +19,11 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" className={kumbh.variable}>
-            <body className='dark:bg-blue-200 overflow-y-scroll'>
+        <html lang="en" className={kumbh.variable} suppressHydrationWarning>
+            <body className="overflow-y-scroll dark:bg-blue-200">
                 <div className="flex flex-col items-center">
                     <Providers>
-                        <main>
-                            {children}
-                        </main>
+                        <main>{children}</main>
                     </Providers>
                 </div>
             </body>
