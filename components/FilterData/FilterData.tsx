@@ -4,25 +4,8 @@ import Header from './Header/Header'
 import Link from 'next/link'
 
 export default function FilterData({ data }: { data: any }) {
-    const [viewCount, setViewCount] = useState<number>(12)
-    const [filteredData, setFilteredData] = useState(
-        data.length > 12 ? data.slice(0, viewCount) : data
-    )
-
-    const handleViewCount = () => {
-        let updatedViewCount: number = 0
-
-        if (viewCount + 6 > data.length) {
-            updatedViewCount = data.length - viewCount + viewCount
-        } else {
-            updatedViewCount = viewCount + 6
-        }
-        setViewCount(updatedViewCount)
-    }
-
-    useMemo(() => {
-        setFilteredData(data.slice(0, viewCount))
-    }, [viewCount])
+    const [viewCount, setViewCount] = useState(12)
+    const [filteredData, setFilteredData] = useState(data)
 
     return (
         <>
@@ -67,16 +50,9 @@ export default function FilterData({ data }: { data: any }) {
                     </Link>
                 ))}
             </div>
-            <div>
-                {data.length > 12 && viewCount < data.length && (
-                    <button
-                        className="mb-[104px] flex h-[48px] w-[141px] items-center justify-center rounded-[5px] bg-[#5964E0] text-white hover:bg-[#939BF4]"
-                        onClick={() => handleViewCount()}
-                    >
-                        Load More
-                    </button>
-                )}
-            </div>
+            {/* <div>
+                <button className="mb-[105px]">more</button>
+            </div> */}
         </>
     )
 }

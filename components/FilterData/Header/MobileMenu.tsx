@@ -48,11 +48,15 @@ export default function MobileMenu({
                                     <input
                                         type="checkbox"
                                         id="checkbox"
-                                        checked={params.fullTime === 'Time' ? false : true}
+                                        checked={
+                                            params.fullTime === ''
+                                                ? false
+                                                : true
+                                        }
                                         onChange={(e) => {
                                             const filter = e.target.checked
                                                 ? 'Full Time'
-                                                : 'Time'
+                                                : ''
                                             setParams({
                                                 ...params,
                                                 fullTime: filter,

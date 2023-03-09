@@ -33,7 +33,7 @@ export default function Header({
     }>({
         filter: '',
         location: '',
-        fullTime: 'Time',
+        fullTime: '',
     })
 
     const handleMobileMenu = (e: any) => {
@@ -173,12 +173,12 @@ export default function Header({
                                 name="fullTime"
                                 id="checkbox"
                                 checked={
-                                    params.fullTime === 'Time' ? false : true
+                                    params.fullTime === '' ? false : true
                                 }
                                 onChange={(e) => {
                                     const filter = e.target.checked
                                         ? 'Full Time'
-                                        : 'Time'
+                                        : ''
                                     setParams({ ...params, fullTime: filter })
                                 }}
                             />
