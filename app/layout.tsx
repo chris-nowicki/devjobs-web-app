@@ -1,5 +1,6 @@
 import './globals.css'
 import Providers from './Providers'
+import GitHubCorner from '@/components/GitHubCorner'
 
 import { Kumbh_Sans } from 'next/font/google'
 
@@ -26,6 +27,7 @@ export default function RootLayout({
                         <main>{children}</main>
                     </Providers>
                 </div>
+                <GitHubCorner />
             </body>
         </html>
     )
