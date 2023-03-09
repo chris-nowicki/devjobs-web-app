@@ -6,6 +6,31 @@ import Link from 'next/link'
 export default function FilterData({ data }: { data: any }) {
     const [viewCount, setViewCount] = useState(12)
     const [filteredData, setFilteredData] = useState(data)
+    const [viewData, setViewData] = useState(
+        filteredData.length > 12
+            ? filteredData.slice(0, viewCount)
+            : filteredData
+    )
+
+    useMemo(() => {
+        setViewData(
+            filteredData.length > 12
+                ? filteredData.slice(0, viewCount)
+                : filteredData
+        )
+    }, [filteredData])
+
+    const handleViewCount = () => {
+        let updatedViewCount = 0
+
+        if (viewCount + 6 > filteredData.length) {
+            updatedViewCount = filteredData.length - viewCount + viewCount
+        } else {
+            updatedViewCount = viewCount + 6
+        }
+        setViewCount(updatedViewCount)
+        setViewData(filteredData.slice(0, updatedViewCount))
+    }
 
     return (
         <>
@@ -13,7 +38,7 @@ export default function FilterData({ data }: { data: any }) {
 
             {/* list of filtered/unfiltered jobs  */}
             <div className="job mt-8 mb-14 flex w-full max-w-[327px] flex-wrap gap-6 md:mt-20 md:max-w-[689px] md:gap-[11px] lg:max-w-[1110px] lg:gap-[30px]">
-                {filteredData.map((job: any, index: number) => (
+                {viewData.map((job: any, index: number) => (
                     <Link
                         key={index}
                         href={`/job/${job.id}`}
@@ -50,9 +75,16 @@ export default function FilterData({ data }: { data: any }) {
                     </Link>
                 ))}
             </div>
-            {/* <div>
-                <button className="mb-[105px]">more</button>
-            </div> */}
+            {filteredData.length > 12 && viewCount != filteredData.length && (
+                <div>
+                    <button
+                        className="mb-[105px] flex h-12 w-[141px] items-center justify-center rounded-[5px] bg-[#5964E0] text-white hover:bg-[#939BF4]"
+                        onClick={handleViewCount}
+                    >
+                        Load More
+                    </button>
+                </div>
+            )}
         </>
     )
 }
