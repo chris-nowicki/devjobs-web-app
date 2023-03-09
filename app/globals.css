@@ -99,10 +99,11 @@ ol > li:before {
     color: #6e8098;
 }
 
-/* ocoto-corner */
+/* ocoto-corner for top right of page to link to github repository */
 .github-corner:hover .octo-arm {
     animation: octocat-wave 560ms ease-in-out;
 }
+
 @keyframes octocat-wave {
     0%,
     100% {
@@ -117,14 +118,6 @@ ol > li:before {
         transform: rotate(10deg);
     }
 }
-@media (max-width: 500px) {
-    .github-corner:hover .octo-arm {
-        animation: none;
-    }
-    .github-corner .octo-arm {
-        animation: octocat-wave 560ms ease-in-out;
-    }
-}
 
 .github-corner svg {
     fill: #151513;
@@ -137,4 +130,13 @@ ol > li:before {
 
 .octo-arm {
     transform-origin: 130px 106px;
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none;
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+    }
 }

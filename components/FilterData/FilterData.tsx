@@ -1,23 +1,42 @@
 'use client'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import Header from './Header/Header'
 import Link from 'next/link'
 
 export default function FilterData({ data }: { data: any }) {
-    const [filteredData, setFilteredData] = useState(data)
+    const [viewCount, setViewCount] = useState<number>(12)
+    const [filteredData, setFilteredData] = useState(
+        data.length > 12 ? data.slice(0, viewCount) : data
+    )
+
+    const handleViewCount = () => {
+        let updatedViewCount: number = 0
+
+        if (viewCount + 6 > data.length) {
+            updatedViewCount = data.length - viewCount + viewCount
+        } else {
+            updatedViewCount = viewCount + 6
+        }
+        setViewCount(updatedViewCount)
+    }
+
+    useMemo(() => {
+        setFilteredData(data.slice(0, viewCount))
+    }, [viewCount])
 
     return (
         <>
             <Header data={data} setFilteredData={setFilteredData} />
 
             {/* list of filtered/unfiltered jobs  */}
-            <div className="job mt-8 flex w-full max-w-[327px] flex-wrap gap-6 md:mt-20 md:max-w-[689px] md:gap-[11px] lg:max-w-[1110px] lg:gap-[30px]">
+            <div className="job mt-8 mb-14 flex w-full max-w-[327px] flex-wrap gap-6 md:mt-20 md:max-w-[689px] md:gap-[11px] lg:max-w-[1110px] lg:gap-[30px]">
                 {filteredData.map((job: any, index: number) => (
-                    <Link href={`/job/${job.id}`} className="jobLink">
-                        <div
-                            key={index}
-                            className="relative flex h-[253px] w-[327px] flex-col md:w-[339px] lg:w-[350px]"
-                        >
+                    <Link
+                        key={index}
+                        href={`/job/${job.id}`}
+                        className="jobLink"
+                    >
+                        <div className="relative flex h-[253px] w-[327px] flex-col md:w-[339px] lg:w-[350px]">
                             <div
                                 style={{ backgroundColor: job.logoBackground }}
                                 className={`z-10 ml-8 flex h-[50px] w-[50px] items-center justify-center rounded-[15px]`}
@@ -47,6 +66,16 @@ export default function FilterData({ data }: { data: any }) {
                         </div>
                     </Link>
                 ))}
+            </div>
+            <div>
+                {data.length > 12 && viewCount < data.length && (
+                    <button
+                        className="mb-[104px] flex h-[48px] w-[141px] items-center justify-center rounded-[5px] bg-[#5964E0] text-white hover:bg-[#939BF4]"
+                        onClick={() => handleViewCount()}
+                    >
+                        Load More
+                    </button>
+                )}
             </div>
         </>
     )

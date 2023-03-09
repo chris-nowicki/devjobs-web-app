@@ -14,7 +14,6 @@ export default function MobileMenu({
     params: any
     setParams: any
 }) {
-    console.log(params)
     return (
         <>
             {mobileMenu && (
