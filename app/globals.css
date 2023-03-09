@@ -94,3 +94,7 @@ ol > li:before {
     font-weight: 700;
     padding-right: 36px;
 }
+
+.jobLink:hover .position {
+    color: #6E8098;
+}

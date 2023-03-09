@@ -65,7 +65,13 @@ export default function Header({
 
     return (
         <div className="relative flex h-[202px] w-full flex-col items-center">
-            <MobileMenu mobileMenu={mobileMenu} />
+            <MobileMenu
+                mobileMenu={mobileMenu}
+                setMobileMenu={setMobileMenu}
+                handleFilter={(e: any) => handleFilter(e)}
+                params={params}
+                setParams={setParams}
+            />
             <div className="-z-10">
                 <div className="absolute top-0 left-0 hidden lg:block">
                     <BGHeaderDesktop />
@@ -102,39 +108,42 @@ export default function Header({
                                 placeholder="Filter by title, companies, expertise..."
                                 className="hidden border-none focus:ring-0 dark:bg-blue-100 lg:block"
                                 name="filter"
+                                value={params.filter}
                                 onChange={(e) =>
                                     setParams({
                                         ...params,
                                         filter: e.target.value,
                                     })
                                 }
-                                size={29}
+                                size={31}
                             />
                             {/* tablet */}
                             <input
                                 type="text"
                                 placeholder="Filter by title..."
                                 className="hidden border-none focus:ring-0 dark:bg-blue-100 md:block lg:hidden"
-                                size={14}
+                                value={params.filter}
                                 onChange={(e) =>
                                     setParams({
                                         ...params,
                                         filter: e.target.value,
                                     })
                                 }
+                                size={14}
                             />
                             {/* mobile */}
                             <input
                                 type="text"
                                 placeholder="Filter by title..."
                                 className="ml-4 border-none focus:ring-0 dark:bg-blue-100 md:hidden"
-                                size={18}
+                                value={params.filter}
                                 onChange={(e) =>
                                     setParams({
                                         ...params,
                                         filter: e.target.value,
                                     })
                                 }
+                                size={18}
                             />
                         </div>
 
@@ -146,13 +155,14 @@ export default function Header({
                                 placeholder="Filter by location..."
                                 className="border-none focus:ring-0 dark:bg-blue-100"
                                 name="location"
+                                value={params.location}
                                 onChange={(e) =>
                                     setParams({
                                         ...params,
                                         location: e.target.value,
                                     })
                                 }
-                                size={14}
+                                size={16}
                             />
                         </div>
 
@@ -162,6 +172,9 @@ export default function Header({
                                 type="checkbox"
                                 name="fullTime"
                                 id="checkbox"
+                                checked={
+                                    params.fullTime === 'Time' ? false : true
+                                }
                                 onChange={(e) => {
                                     const filter = e.target.checked
                                         ? 'Full Time'
@@ -186,10 +199,16 @@ export default function Header({
                         </button>
                     </div>
                     <div className="flex items-center gap-6 pr-4 md:hidden">
-                        <button onClick={(e) => handleMobileMenu(e)}>
+                        <button
+                            type="button"
+                            onClick={(e) => handleMobileMenu(e)}
+                        >
                             <Filter />
                         </button>
-                        <button className="flex h-12 w-12 items-center justify-center rounded-[5px] bg-[#5964E0] text-white">
+                        <button
+                            type="submit"
+                            className="flex h-12 w-12 items-center justify-center rounded-[5px] bg-[#5964E0] text-white"
+                        >
                             <Search />
                         </button>
                     </div>
