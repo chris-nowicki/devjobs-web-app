@@ -54,6 +54,7 @@ export default function Header({ data }: { data: any }) {
                     <Link
                         href={data.website}
                         className="mt-6 flex h-12 w-[147px] items-center justify-center rounded-[5px] bg-[#5964E0] bg-opacity-10 text-[16px] font-bold text-[#5964E0] hover:bg-opacity-[.35] dark:bg-white dark:bg-opacity-10 dark:text-white dark:hover:bg-opacity-[.35] md:mt-0"
+                        prefetch={false}
                     >
                         Company Site
                     </Link>
