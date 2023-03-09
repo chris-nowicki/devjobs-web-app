@@ -78,3 +78,19 @@ input[type='checkbox']:checked + label .checkbox > svg {
     opacity: 0.1;
     border-radius: 3px;
 }
+
+/* ordered list styling for job description page */
+ol {
+    counter-reset: item;
+    list-style-type: none;
+}
+ol > li {
+    display: flex;
+}
+ol > li:before {
+    content: counter(item) '';
+    counter-increment: item;
+    color: #5964e0;
+    font-weight: 700;
+    padding-right: 36px;
+}
