@@ -7,22 +7,19 @@ import { Sun, Moon } from '@/components/Icons'
 
 export default function ThemeSwitcher() {
     const { theme, setTheme } = useTheme()
-    const [enabled, setEnabled] = useState<boolean>(
-        theme === 'dark' ? true : false
-    )
-   
+    const [enabled, setEnabled] = useState<boolean>(false)
     const [mounted, setMounted] = useState<boolean>(false)
 
     useEffect(() => {
         setMounted(true)
+        setEnabled(theme === 'dark' ? true : false)
     }, [])
-
-
 
     const handleTheme = () => {
         setEnabled(enabled === false ? true : false)
         setTheme(theme === 'light' ? 'dark' : 'light')
     }
+
     return (
         <div className="flex items-center gap-4">
             <Sun />

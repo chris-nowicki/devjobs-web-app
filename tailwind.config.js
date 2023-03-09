@@ -6,6 +6,9 @@ module.exports = {
         './components/**/*.{js,ts,jsx,tsx}',
     ],
     darkMode: 'class',
+    fontFamily: {
+        sans: ['var(--font-kumbh)'],
+    },
     theme: {
         screens: {
             sm: '375px',
@@ -13,9 +16,7 @@ module.exports = {
             lg: '1440px',
             xl: '4000px',
         },
-        fontFamily: {
-            sans: ['var(--font-kumbh)'],
-        },
+
         colors: {
             transparent: 'transparent',
             current: 'currentColor',

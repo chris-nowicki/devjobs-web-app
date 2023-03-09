@@ -22,7 +22,9 @@ export default function Header({ data }: { data: any }) {
             </div>
             <div className="flex w-full max-w-[327px] flex-col items-center md:max-w-[689px] lg:max-w-[1110px]">
                 <div className="mt-[45px] flex w-full justify-between">
-                    <Logo />
+                    <Link href="/">
+                        <Logo />
+                    </Link>
                     <ThemeSwitcher />
                 </div>
             </div>

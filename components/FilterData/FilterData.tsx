@@ -23,26 +23,28 @@ export default function FilterData({ data }: { data: any }) {
                         >
                             <img src={job.logo} />
                         </div>
-                        <div className="absolute bottom-0 left-0  h-[228px] w-[327px] rounded-md bg-white px-8 pt-[49px] pb-8 text-gray-300 dark:bg-blue-100 md:w-[339px] lg:w-[350px]">
-                            <div className="flex h-[147px] w-[286px] flex-col justify-between lg:w-[266px]">
-                                <div className="flex flex-col">
-                                    <div className="flex items-center text-gray-300">
-                                        {job.postedAt}
-                                        <span className="mx-3 h-1 w-1 rounded-full bg-gray-300" />
-                                        {job.contract}
-                                    </div>
-                                    <Link href={`/job/${job.id}`}>
-                                        <h3 className="mt-3 text-blue-100 dark:text-white">
+                        <Link href={`/job/${job.id}`} className='hover:shadow-lg'>
+                            <div className="job hover:shadow-lg absolute bottom-0 left-0  h-[228px] w-[327px] rounded-md bg-white px-8 pt-[49px] pb-8 text-gray-300 dark:bg-blue-100 md:w-[339px] lg:w-[350px]">
+                                <div className="flex h-[147px] w-[286px] flex-col justify-between lg:w-[266px]">
+                                    <div className="flex flex-col">
+                                        <div className="flex items-center text-gray-300">
+                                            {job.postedAt}
+                                            <span className="mx-3 h-1 w-1 rounded-full bg-gray-300" />
+                                            {job.contract}
+                                        </div>
+                                        <h3 className="position mt-3 text-blue-100 dark:text-white hover:text-gray-300">
                                             {job.position}
                                         </h3>
-                                    </Link>
-                                    <span className="mt-3">{job.company}</span>
+                                        <span className="mt-3">
+                                            {job.company}
+                                        </span>
+                                    </div>
+                                    <h4 className=" text-[#5964E0]">
+                                        {job.location}
+                                    </h4>
                                 </div>
-                                <h4 className=" text-[#5964E0]">
-                                    {job.location}
-                                </h4>
                             </div>
-                        </div>
+                        </Link>
                     </div>
                 ))}
             </div>

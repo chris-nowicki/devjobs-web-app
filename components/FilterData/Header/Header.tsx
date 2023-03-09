@@ -1,5 +1,6 @@
 'use client'
-import { useState, useRef, useMemo } from 'react'
+import { useState } from 'react'
+import Link from 'next/link'
 
 // components
 import MobileMenu from './MobileMenu'
@@ -78,7 +79,9 @@ export default function Header({
             </div>
             <div className="flex w-full max-w-[327px] flex-col items-center md:max-w-[689px] lg:max-w-[1110px]">
                 <div className="mt-[45px] flex w-full justify-between">
-                    <Logo />
+                    <Link href="/">
+                        <Logo />
+                    </Link>
                     <ThemeSwitcher />
                 </div>
             </div>
