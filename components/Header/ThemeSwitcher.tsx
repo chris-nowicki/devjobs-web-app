@@ -11,8 +11,26 @@ export default function ThemeSwitcher() {
     const [mounted, setMounted] = useState<boolean>(false)
 
     useEffect(() => {
+        const currentTheme = document.documentElement.classList
+
         setMounted(true)
         setEnabled(theme === 'dark' ? true : false)
+
+        window
+            .matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', ({ matches }) => {
+                if (matches) {
+                    if (!currentTheme.contains('dark')) {
+                        setTheme('dark')
+                        setEnabled(true)
+                    }
+                } else {
+                    if (currentTheme.contains('dark')) {
+                        setTheme('light')
+                        setEnabled(false)
+                    }
+                }
+            })
     }, [])
 
     const handleTheme = () => {

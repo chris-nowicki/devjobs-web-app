@@ -23,7 +23,7 @@ Users should be able to:
 -   [x] See hover states for all interactive elements throughout the site
 -   [x] Be able to filter jobs on the index page by title, location, and whether a job is for a full-time position
 -   [x] Be able to click a job from the index page so that they can read more information and apply for the job
--   [ ] **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS.
+-   [x] **Bonus**: Have the correct color scheme chosen for them based on their computer preferences.
 
 ### Screenshot
 
@@ -33,8 +33,6 @@ Users should be able to:
 
 -   Solution URL: [https://www.frontendmentor.io/solutions/devjobs-web-app-using-nextjs-13-and-tailwindcss-POA_R6jEYP](https://www.frontendmentor.io/solutions/devjobs-web-app-using-nextjs-13-and-tailwindcss-POA_R6jEYP)
 -   Live Site URL: [https://devjobs.chrisnowicki.io](https://devjobs.chrisnowicki.io)
-
-## My process
 
 ### Built with
 
@@ -88,7 +86,7 @@ export default function RootLayout({
 ### Continued development
 
 -   [ ] Add Login/Auth feature
--   [ ] Add feature to save jobs
+-   [ ] Add feature to save jobs to logged in users profile
 -   [ ] Add feature to add new jobs if you are an employer
 -   [ ] Move data over to a database
 
