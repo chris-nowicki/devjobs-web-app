@@ -209,7 +209,7 @@ export function Check() {
     )
 }
 
-export function Filter() {
+export function FilterIcon() {
     return (
         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
             <path

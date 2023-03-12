@@ -1,6 +1,6 @@
 import './globals.css'
 import Providers from './Providers'
-import GitHubCorner from '@/components/GitHubCorner'
+import GitHubCorner from '@/app/GitHubCorner'
 
 import { Kumbh_Sans } from 'next/font/google'
 

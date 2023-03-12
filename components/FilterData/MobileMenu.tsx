@@ -1,5 +1,5 @@
 'use client'
-import { Location, Check } from '../../Icons'
+import { Location, Check } from '../Icons'
 
 export default function MobileMenu({
     mobileMenu,

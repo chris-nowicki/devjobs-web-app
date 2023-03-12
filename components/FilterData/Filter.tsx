@@ -1,24 +1,14 @@
 'use client'
 import { useState } from 'react'
-import Link from 'next/link'
 
 // components
 import MobileMenu from './MobileMenu'
-import ThemeSwitcher from './ThemeSwitcher'
+import Header from '@/components/Header/Header'
 
 // icons
-import {
-    BGHeaderDesktop,
-    BGHeaderTablet,
-    BGHeaderMobile,
-    Logo,
-    Search,
-    Location,
-    Check,
-    Filter,
-} from '../../Icons'
+import { Search, Location, Check, FilterIcon } from '../Icons'
 
-export default function Header({
+export default function Filter({
     data,
     setFilteredData,
 }: {
@@ -65,6 +55,7 @@ export default function Header({
 
     return (
         <div className="relative flex h-[202px] w-full flex-col items-center">
+            <Header />
             <MobileMenu
                 mobileMenu={mobileMenu}
                 setMobileMenu={setMobileMenu}
@@ -72,25 +63,6 @@ export default function Header({
                 params={params}
                 setParams={setParams}
             />
-            <div className="-z-10">
-                <div className="absolute top-0 left-0 hidden lg:block">
-                    <BGHeaderDesktop />
-                </div>
-                <div className="absolute left-0 top-0 hidden md:block lg:hidden">
-                    <BGHeaderTablet />
-                </div>
-                <div className="absolute top-0 left-0 md:hidden">
-                    <BGHeaderMobile />
-                </div>
-            </div>
-            <div className="flex w-full max-w-[327px] flex-col items-center md:max-w-[689px] lg:max-w-[1110px]">
-                <div className="mt-[45px] flex w-full justify-between">
-                    <Link href="/">
-                        <Logo />
-                    </Link>
-                    <ThemeSwitcher />
-                </div>
-            </div>
             <div className="absolute bottom-0 flex h-[80px] w-full max-w-[327px] items-center rounded-md bg-white dark:bg-blue-100 md:max-w-[689px] md:pl-6 lg:max-w-[1110px] lg:pl-8">
                 <form
                     className="relative flex h-full w-full justify-between"
@@ -201,7 +173,7 @@ export default function Header({
                             type="button"
                             onClick={(e) => handleMobileMenu(e)}
                         >
-                            <Filter />
+                            <FilterIcon />
                         </button>
                         <button
                             type="submit"

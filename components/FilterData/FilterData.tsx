@@ -1,6 +1,6 @@
 'use client'
 import { useMemo, useState } from 'react'
-import Header from './Header/Header'
+import Filter from './Filter'
 import Link from 'next/link'
 
 export default function FilterData({ data }: { data: any }) {
@@ -34,7 +34,7 @@ export default function FilterData({ data }: { data: any }) {
 
     return (
         <>
-            <Header data={data} setFilteredData={setFilteredData} />
+            <Filter data={data} setFilteredData={setFilteredData} />
 
             {/* list of filtered/unfiltered jobs  */}
             <div className="job mt-8 mb-14 flex w-full max-w-[327px] flex-wrap gap-6 md:mt-20 md:max-w-[689px] md:gap-[11px] lg:max-w-[1110px] lg:gap-[30px]">
