@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
--   Solution URL: [Add solution URL here](https://your-solution-url.com)
+-   Solution URL: [https://www.frontendmentor.io/solutions/devjobs-web-app-using-nextjs-13-and-tailwindcss-POA_R6jEYP](https://www.frontendmentor.io/solutions/devjobs-web-app-using-nextjs-13-and-tailwindcss-POA_R6jEYP)
 -   Live Site URL: [https://devjobs.chrisnowicki.io](https://devjobs.chrisnowicki.io)
 
 ## My process
