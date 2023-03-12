@@ -4,16 +4,14 @@ This is a solution to the [Devjobs web app challenge on Frontend Mentor](https:/
 
 ## Table of contents
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
+-   [Overview](#overview)
+    -   [The challenge](#the-challenge)
+    -   [Screenshot](#screenshot)
+    -   [Links](#links)
+-   [My process](#my-process)
+    -   [Built with](#built-with)
+    -   [What I learned](#what-i-learned)
+-   [Author](#author)
 
 ## Overview
 
@@ -21,11 +19,11 @@ This is a solution to the [Devjobs web app challenge on Frontend Mentor](https:/
 
 Users should be able to:
 
-- [X] View the optimal layout for each page depending on their device's screen size
-- [X] See hover states for all interactive elements throughout the site
-- [X] Be able to filter jobs on the index page by title, location, and whether a job is for a full-time position
-- [X] Be able to click a job from the index page so that they can read more information and apply for the job
-- [] **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS.
+-   [x] View the optimal layout for each page depending on their device's screen size
+-   [x] See hover states for all interactive elements throughout the site
+-   [x] Be able to filter jobs on the index page by title, location, and whether a job is for a full-time position
+-   [x] Be able to click a job from the index page so that they can read more information and apply for the job
+-   [ ] **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS.
 
 ### Screenshot
 
@@ -33,30 +31,66 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+-   Solution URL: [Add solution URL here](https://your-solution-url.com)
+-   Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
 ## My process
 
 ### Built with
 
-- [Next.js](https://nextjs.org/) - React framework
-- [Next Themes](https://github.com/pacocoursey/next-themes)
-- [Tailwindcss](https://www.tailwindcss.com)
-- JSON
+-   [Next.js](https://nextjs.org/) - React framework
+-   [Next Themes](https://github.com/pacocoursey/next-themes)
+-   [Tailwindcss](https://www.tailwindcss.com)
+-   JSON
 
 ### What I learned
 
-I wanted to focus on learning the new experimental /app directory offered by [Next.js](https://www.nextjs.org).  I learned how to implement dynamic page rendering server side based on the `id` of the job to pull that job info from the JSON file.
+I wanted to focus on learning the new experimental /app directory offered by [Next.js](https://www.nextjs.org). Specifically I wanted to focus on dynamic page rendering server side based on the `id` of the job when trying to view job details.
+
+I also had to learn how to implement 3rd party providers to integrate [Next Themes](https://github.com/pacocoursey/next-themes). Luckily the _Next.js 13_ beta [docs](https://beta.nextjs.org/docs/data-fetching/fetching#static-data-fetchingmd).
+
+Since, by default, the `/app` directory runs on server side so I had to create a separate component to handle the _theme provider_, tell it to run on the client side `'use client'`, and import into the layout component in the _root_ of the `/app` directory.
+
+**Providers.tsx**
+
+```javascript
+'use client'
+import { ThemeProvider } from 'next-themes'
+
+export default function Providers({ children }: { children: any }) {
+    return <ThemeProvider attribute="class">{children}</ThemeProvider>
+}
+```
+
+**layout.tsx**
+
+```javascript
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode,
+}) {
+    return (
+        <html lang="en" className={kumbh.variable}>
+            <body className="overflow-y-scroll dark:bg-blue-200">
+                <div className="flex flex-col items-center">
+                    <Providers>
+                        <main>{children}</main>
+                    </Providers>
+                </div>
+               {...}
+            </body>
+        </html>
+    )
+}
+```
 
 ### Continued development
 
--[] Add Login/Auth feature
--[] Add feature to save jobs
--[] Add feature to add new jobs if you are an employer
--[] Move data over to a database
-
-### Useful resources
+-[ ] Add Login/Auth feature
+-[ ] Add feature to save jobs
+-[ ] Add feature to add new jobs if you are an employer
+-[ ] Move data over to a database
 
 ## Author
 
