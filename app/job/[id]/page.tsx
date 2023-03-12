@@ -1,4 +1,5 @@
 import JobData from '@/components/JobData/JobData'
+
 // Load Default Data
 import DATA from '../../../json/data.json'
 const defaultData = DATA
