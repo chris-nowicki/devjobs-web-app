@@ -106,7 +106,7 @@ export default function Header({
                             <input
                                 type="text"
                                 placeholder="Filter by title, companies, expertise..."
-                                className="hidden border-none focus:ring-0 dark:bg-blue-100 lg:block"
+                                className="hidden border-none text-blue-100 focus:ring-0 dark:bg-blue-100 dark:text-white lg:block"
                                 name="filter"
                                 value={params.filter}
                                 onChange={(e) =>
@@ -121,7 +121,7 @@ export default function Header({
                             <input
                                 type="text"
                                 placeholder="Filter by title..."
-                                className="hidden border-none focus:ring-0 dark:bg-blue-100 md:block lg:hidden"
+                                className="hidden border-none  text-blue-100 focus:ring-0 dark:bg-blue-100 dark:text-white md:block lg:hidden"
                                 value={params.filter}
                                 onChange={(e) =>
                                     setParams({
@@ -135,7 +135,7 @@ export default function Header({
                             <input
                                 type="text"
                                 placeholder="Filter by title..."
-                                className="ml-4 border-none focus:ring-0 dark:bg-blue-100 md:hidden"
+                                className="ml-4 border-none  text-blue-100 focus:ring-0 dark:bg-blue-100 dark:text-white md:hidden"
                                 value={params.filter}
                                 onChange={(e) =>
                                     setParams({
@@ -148,12 +148,12 @@ export default function Header({
                         </div>
 
                         {/* search by location */}
-                        <div className="hidden h-full items-center border-r border-[#6E8098] border-opacity-20 md:ml-6 md:flex md:w-[189px] lg:ml-0 lg:w-[277px] lg:pl-[23px]">
+                        <div className="hidden h-full items-center border-r border-[#6E8098] border-opacity-20 text-[#5964E0] md:ml-6 md:flex md:w-[189px] lg:ml-0 lg:w-[277px] lg:pl-[23px]">
                             <Location />
                             <input
                                 type="text"
                                 placeholder="Filter by location..."
-                                className="border-none focus:ring-0 dark:bg-blue-100"
+                                className="border-none text-blue-100 focus:ring-0 dark:bg-blue-100 dark:text-white"
                                 name="location"
                                 value={params.location}
                                 onChange={(e) =>
@@ -172,9 +172,7 @@ export default function Header({
                                 type="checkbox"
                                 name="fullTime"
                                 id="checkbox"
-                                checked={
-                                    params.fullTime === '' ? false : true
-                                }
+                                checked={params.fullTime === '' ? false : true}
                                 onChange={(e) => {
                                     const filter = e.target.checked
                                         ? 'Full Time'

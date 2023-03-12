@@ -7,8 +7,8 @@ export default function GitHubCorner() {
             aria-label="View source on GitHub"
         >
             <svg
-                width="80"
-                height="80"
+                width="120"
+                height="120"
                 viewBox="0 0 250 250"
                 aria-hidden="true"
             >
