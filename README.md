@@ -32,7 +32,7 @@ Users should be able to:
 ### Links
 
 -   Solution URL: [Add solution URL here](https://your-solution-url.com)
--   Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+-   Live Site URL: [https://devjobs.chrisnowicki.io](https://devjobs.chrisnowicki.io)
 
 ## My process
 
@@ -52,6 +52,7 @@ I also had to learn how to implement 3rd party providers to integrate [Next Them
 Since, by default, the `/app` directory runs on server side so I had to create a separate component to handle the _theme provider_, tell it to run on the client side `'use client'`, and import into the layout component in the _root_ of the `/app` directory.
 
 **Providers.tsx**
+
 ```javascript
 'use client'
 import { ThemeProvider } from 'next-themes'
@@ -62,6 +63,7 @@ export default function Providers({ children }: { children: any }) {
 ```
 
 **layout.tsx**
+
 ```javascript
 export default function RootLayout({
     children,
@@ -85,13 +87,13 @@ export default function RootLayout({
 
 ### Continued development
 
-- [ ] Add Login/Auth feature
-- [ ] Add feature to save jobs
-- [ ] Add feature to add new jobs if you are an employer
-- [ ] Move data over to a database
+-   [ ] Add Login/Auth feature
+-   [ ] Add feature to save jobs
+-   [ ] Add feature to add new jobs if you are an employer
+-   [ ] Move data over to a database
 
 ## Author
 
-- Website - [https://www.chrisnowicki.io](https://www.chrisnowicki.io)
-- Frontend Mentor - [@chris-nowicki](https://www.frontendmentor.io/profile/chris-nowicki)
-- Twitter - [@iamwix](https://www.twitter.com/iamwix)
+-   Website - [https://www.chrisnowicki.io](https://www.chrisnowicki.io)
+-   Frontend Mentor - [@chris-nowicki](https://www.frontendmentor.io/profile/chris-nowicki)
+-   Twitter - [@iamwix](https://www.twitter.com/iamwix)
