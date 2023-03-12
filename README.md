@@ -52,7 +52,6 @@ I also had to learn how to implement 3rd party providers to integrate [Next Them
 Since, by default, the `/app` directory runs on server side so I had to create a separate component to handle the _theme provider_, tell it to run on the client side `'use client'`, and import into the layout component in the _root_ of the `/app` directory.
 
 **Providers.tsx**
-
 ```javascript
 'use client'
 import { ThemeProvider } from 'next-themes'
@@ -63,7 +62,6 @@ export default function Providers({ children }: { children: any }) {
 ```
 
 **layout.tsx**
-
 ```javascript
 export default function RootLayout({
     children,
@@ -87,10 +85,10 @@ export default function RootLayout({
 
 ### Continued development
 
--[ ] Add Login/Auth feature
--[ ] Add feature to save jobs
--[ ] Add feature to add new jobs if you are an employer
--[ ] Move data over to a database
+- [ ] Add Login/Auth feature
+- [ ] Add feature to save jobs
+- [ ] Add feature to add new jobs if you are an employer
+- [ ] Move data over to a database
 
 ## Author
 
